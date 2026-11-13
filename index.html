@@ -284,33 +284,33 @@
 
     const MENU_ITEMS = [
       // Burgers
-      { id: "b1", name: "Zinger Burger", category: "Burgers", price: 280, emoji: "🍔", badge: "Popular" },
-      { id: "b2", name: "Chicken Burger", category: "Burgers", price: 250, emoji: "🍔", badge: "" },
-      { id: "b3", name: "Chicken Egg Lapeta Burger", category: "Burgers", price: 300, emoji: "🍳", badge: "Special" },
-      { id: "b4", name: "Egg Shami Burger", category: "Burgers", price: 160, emoji: "🍔", badge: "" },
-      { id: "b5", name: "Double Egg Shami Burger", category: "Burgers", price: 200, emoji: "🍔", badge: "" },
-      { id: "b6", name: "Sada Shami Burger", category: "Burgers", price: 130, emoji: "🍔", badge: "Value" },
+      { id: "b1", image: "images/zinger-burger.jpg", name: "Zinger Burger", category: "Burgers", price: 280, emoji: "🍔", badge: "Popular" },
+      { id: "b2", image: "images/chicken-burger.jpg", name: "Chicken Burger", category: "Burgers", price: 250, emoji: "🍔", badge: "" },
+      { id: "b3", image: "images/chicken-egg-lapeta-burger.jpg", name: "Chicken Egg Lapeta Burger", category: "Burgers", price: 300, emoji: "🍳", badge: "Special" },
+      { id: "b4", image: "images/egg-shami-burger.jpg", name: "Egg Shami Burger", category: "Burgers", price: 160, emoji: "🍔", badge: "" },
+      { id: "b5", image: "images/double-egg-shami-burger.jpg", name: "Double Egg Shami Burger", category: "Burgers", price: 200, emoji: "🍔", badge: "" },
+      { id: "b6", image: "images/sada-shami-burger.jpg", name: "Sada Shami Burger", category: "Burgers", price: 130, emoji: "🍔", badge: "Value" },
 
       // Platters
-      { id: "p1", name: "Chicken Shawarma Platter", category: "Platters", price: 400, emoji: "🍽️", badge: "Best Seller" },
-      { id: "p2", name: "Chicken Pratha Platter", category: "Platters", price: 500, emoji: "🍽️", badge: "" },
-      { id: "p3", name: "Zinger Pratha Platter", category: "Platters", price: 600, emoji: "🔥", badge: "Chef's Choice" },
+      { id: "p1", image: "images/chicken-shawarma-platter.jpg", name: "Chicken Shawarma Platter", category: "Platters", price: 400, emoji: "🍽️", badge: "Best Seller" },
+      { id: "p2", image: "images/chicken-pratha-platter.jpg", name: "Chicken Pratha Platter", category: "Platters", price: 500, emoji: "🍽️", badge: "" },
+      { id: "p3", image: "images/zinger-pratha-platter.jpg", name: "Zinger Pratha Platter", category: "Platters", price: 600, emoji: "🔥", badge: "Chef's Choice" },
 
       // Shawarmas
-      { id: "s1", name: "Zinger Shawarma", category: "Shawarmas", price: 230, emoji: "🌯", badge: "Hot" },
-      { id: "s2", name: "Chicken Shawarma Small", category: "Shawarmas", price: 160, emoji: "🌯", badge: "" },
-      { id: "s3", name: "Chicken Shawarma Large", category: "Shawarmas", price: 260, emoji: "🌯", badge: "Popular" },
+      { id: "s1", image: "images/zinger-shawarma.jpg", name: "Zinger Shawarma", category: "Shawarmas", price: 230, emoji: "🌯", badge: "Hot" },
+      { id: "s2", image: "images/chicken-shawarma-small.jpg", name: "Chicken Shawarma Small", category: "Shawarmas", price: 160, emoji: "🌯", badge: "" },
+      { id: "s3", image: "images/chicken-shawarma-large.jpg", name: "Chicken Shawarma Large", category: "Shawarmas", price: 260, emoji: "🌯", badge: "Popular" },
 
       // Wraps
-      { id: "w1", name: "Crispy Zinger Wrap", category: "Wraps", price: 350, emoji: "🌮", badge: "Crispy" },
-      { id: "w2", name: "Chicken Tortilla Wrap", category: "Wraps", price: 320, emoji: "🌮", badge: "" },
+      { id: "w1", image: "images/crispy-zinger-wrap.jpg", name: "Crispy Zinger Wrap", category: "Wraps", price: 350, emoji: "🌮", badge: "Crispy" },
+      { id: "w2", image: "images/chicken-tortilla-wrap.jpg", name: "Chicken Tortilla Wrap", category: "Wraps", price: 320, emoji: "🌮", badge: "" },
 
       // Pratha Rolls
-      { id: "r1", name: "Crispy Zinger Pratha", category: "Pratha Rolls", price: 270, emoji: "🫓", badge: "Crispy" },
-      { id: "r2", name: "Chicken Pratha Roll", category: "Pratha Rolls", price: 230, emoji: "🫓", badge: "" },
+      { id: "r1", image: "images/crispy-zinger-pratha.jpg", name: "Crispy Zinger Pratha", category: "Pratha Rolls", price: 270, emoji: "🫓", badge: "Crispy" },
+      { id: "r2", image: "images/chicken-pratha-roll.jpg", name: "Chicken Pratha Roll", category: "Pratha Rolls", price: 230, emoji: "🫓", badge: "" },
 
       // Extra & Sauces
-      { id: "e1", name: "Extra Mayo Dip Sauce", category: "Extra & Sauces", price: 60, emoji: "🥣", badge: "Add-on" }
+      { id: "e1", image: "images/extra-mayo-dip-sauce.jpg", name: "Extra Mayo Dip Sauce", category: "Extra & Sauces", price: 60, emoji: "🥣", badge: "Add-on" }
     ];
 
     const CATEGORIES = ["All", "Burgers", "Platters", "Shawarmas", "Wraps", "Pratha Rolls", "Extra & Sauces"];
@@ -433,8 +433,13 @@
             qty > 0 ? "border-yellow-400/60" : "border-zinc-800/90"
           } p-3 transition">
             <div>
-              <div class="relative flex items-center justify-center h-24 rounded-xl bg-gradient-to-br from-zinc-800/80 via-[#1f1618] to-red-950/40 border border-zinc-800 mb-2.5">
-                <span class="text-4xl select-none">${item.emoji}</span>
+              <div class="relative flex items-center justify-center h-32 sm:h-36 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-800/80 via-[#1f1618] to-red-950/40 border border-zinc-800 mb-2.5">
+                ${
+                  item.image
+                    ? `<img src="${item.image}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />`
+                    : ""
+                }
+                <span class="text-4xl select-none items-center justify-center w-full h-full ${item.image ? "hidden" : "flex"}">${item.emoji}</span>
                 ${
                   item.badge
                     ? `<span class="absolute top-1.5 left-1.5 rounded-md bg-yellow-400/95 px-1.5 py-0.5 text-[9px] font-black uppercase text-black">${item.badge}</span>`
