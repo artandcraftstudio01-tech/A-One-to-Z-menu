@@ -381,6 +381,10 @@
 
           <!-- Customer Details -->
           <div class="space-y-3">
+            <div class="rounded-xl bg-amber-500/10 border border-amber-400/30 px-3 py-2 text-[11px] font-semibold text-amber-300 flex items-center gap-2">
+              <span>⚠️</span>
+              <span>Note: Apna <strong>Name</strong>, <strong>Phone Number</strong> aur <strong>Address</strong> lazmi fill karein, warna order submit nahi hoga.</span>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label for="cust-name" class="block text-xs font-semibold text-zinc-300 mb-1">Your Name *</label>
@@ -524,6 +528,9 @@
             <span class="text-zinc-300 font-bold">Total Payable</span>
             <span id="modal-total" class="text-lg font-black text-yellow-400">Rs 0</span>
           </div>
+          <a id="wa-direct-link" href="https://wa.me/923235112318" target="_blank" rel="noopener noreferrer" class="hidden w-full py-2.5 px-4 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-xs font-extrabold text-center transition">
+            ✅ Order Ready! Click here to Open WhatsApp &rarr;
+          </a>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <button id="send-whatsapp-btn" type="button" class="w-full py-3 px-4 rounded-xl bg-green-600 hover:bg-green-500 text-white text-sm font-extrabold flex items-center justify-center gap-2 transition">
               <span>📲</span>
@@ -990,21 +997,17 @@
       const notes = document.getElementById("cust-notes").value.trim();
       const tid = document.getElementById("easypaisa-tid").value.trim();
 
-      if (!name || !phone) {
-        errEl.textContent = "Please enter your Name and Phone Number.";
+      function failForm(text) {
+        errEl.textContent = text;
         errEl.classList.remove("hidden");
+        errEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        showToast(text);
         return null;
       }
-      if (orderType === "Delivery" && !address) {
-        errEl.textContent = "Please enter your Delivery Address.";
-        errEl.classList.remove("hidden");
-        return null;
-      }
-      if (orderType === "Dine-in" && !table) {
-        errEl.textContent = "Please enter your Table Number.";
-        errEl.classList.remove("hidden");
-        return null;
-      }
+
+      if (!name || !phone) return failForm("Please enter your Name and Phone Number.");
+      if (orderType === "Delivery" && !address) return failForm("Please enter your Delivery Address.");
+      if (orderType === "Dine-in" && !table) return failForm("Please enter your Table Number.");
 
       const lines = [
         `*${RESTAURANT_NAME}*`,
@@ -1103,7 +1106,22 @@
       const msg = buildOrderMessage();
       if (!msg) return;
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-      window.open(url, "_blank", "noopener,noreferrer");
+      const directLink = document.getElementById("wa-direct-link");
+      if (directLink) {
+        directLink.href = url;
+        directLink.classList.remove("hidden");
+      }
+      copyText(msg, "Order copied! Opening WhatsApp...");
+      const win = window.open(url, "_blank", "noopener,noreferrer");
+      if (!win || win.closed) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     });
 
     document.getElementById("copy-order-btn").addEventListener("click", () => {
